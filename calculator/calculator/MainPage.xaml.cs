@@ -9,7 +9,7 @@ namespace calculator
     public partial class MainPage : ContentPage
     {
         String screenText;
-        int count = 0;
+        bool isClear=false;
         public MainPage()
         {
             InitializeComponent();
@@ -52,6 +52,11 @@ namespace calculator
         }
         private void OnNumberClicked(object sender, EventArgs e)
         {
+            if (isClear)
+            {
+                myLabel.Text = "";
+                isClear = false;
+            }
             screenText += ((Button)sender).Text;
             myLabel.Text += ((Button)sender).Text;
         }
@@ -74,7 +79,7 @@ namespace calculator
             this.screenText = "";
             bool containsPlus = nums.Contains("+");
             bool containsMin = Regex.IsMatch(nums, @"(?<!\()\-");
-            bool containsDiv = nums.Contains(" / ");
+            bool containsDiv = nums.Contains("/");
             bool containsTime = nums.Contains("x");
 
             // Handle multiplication and division first (PEMDAS)
@@ -88,7 +93,7 @@ namespace calculator
                         string num1 = match.Groups[1].Value;  // Number before 'x'
                         string num2 = match.Groups[2].Value;  // Number after 'x'
 
-                        int result = (int.Parse(num1) * int.Parse(num2));  // Perform multiplication
+                        float result = (float.Parse(num1) * float.Parse(num2));  // Perform multiplication
                         int endOfNum2 = match.Index + match.Length;  // Position after 'num2'
                         nums = nums.Substring(0, match.Index) + "(" + result.ToString() + ")" + nums.Substring(endOfNum2);
                         containsTime = nums.Contains("x");  // Recheck for more multiplications
@@ -103,7 +108,7 @@ namespace calculator
                         string num1 = match.Groups[1].Value;  // Number before '/'
                         string num2 = match.Groups[2].Value;  // Number after '/'
 
-                        int result = (int.Parse(num1) / int.Parse(num2));  // Perform division
+                        float result = (float.Parse(num1) / float.Parse(num2));  // Perform division
                         int endOfNum2 = match.Index + match.Length;  // Position after 'num2'
                         nums = nums.Substring(0, match.Index) + "(" + result.ToString() + ")" + nums.Substring(endOfNum2);
                         containsDiv = nums.Contains("/");  // Recheck for more divisions
@@ -122,7 +127,7 @@ namespace calculator
                         string num1 = match.Groups[1].Value;  // Number before '+'
                         string num2 = match.Groups[2].Value;  // Number after '+'
 
-                        int result = (int.Parse(num1) + int.Parse(num2));  // Perform addition
+                        float result = (float.Parse(num1) + float.Parse(num2));  // Perform addition
                         int endOfNum2 = match.Index + match.Length;  // Position after 'num2'
                         nums = nums.Substring(0, match.Index) + "(" + result.ToString() + ")" + nums.Substring(endOfNum2);
                         containsPlus = nums.Contains("+");  // Recheck for more additions
@@ -138,14 +143,15 @@ namespace calculator
                         string num1 = match.Groups[1].Value;  // Number before '-'
                         string num2 = match.Groups[2].Value;  // Number after '-'
 
-                        int result = (int.Parse(num1) - int.Parse(num2));  // Perform subtraction
+                        float result = (float.Parse(num1) - float.Parse(num2));  // Perform subtraction
                         int endOfNum2 = match.Index + match.Length;  // Position after 'num2'
                         nums = nums.Substring(0, match.Index) + "(" + result.ToString() + ")" + nums.Substring(endOfNum2);
                         containsMin = Regex.IsMatch(nums, @"(?<!\()\-");
                     }
                 }
             }
-
+            screenText = "";
+            isClear = true;
             return nums;
         }
     }
