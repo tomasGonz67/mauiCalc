@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="calculator.MainPage">
+
+    <VerticalStackLayout Padding="20" Spacing="20">
+        <Label Text="WELCOME TO CALCULTOR APP"
+           FontSize="25"
+           HorizontalTextAlignment="Center"
+>
+        </Label>
+        <Border BackgroundColor="Transparent"
+                StrokeThickness="2"
+                HeightRequest="100"
+                HorizontalOptions="Fill"
+                VerticalOptions="Center">
+
+            <!-- Grid inside Border to overlay BoxView and Label -->
+            <Grid>
+                <!-- BoxView as background -->
+                <BoxView Color="Gray"
+                         HeightRequest="100"
+                         HorizontalOptions="Fill"
+                         VerticalOptions="Center" />
+
+                <!-- Label on top of BoxView -->
+                <Label x:Name="myLabel"
+                       Text=""
+                       VerticalTextAlignment="Center"
+                       HorizontalTextAlignment="Center"
+                       TextColor="White" 
+                       FontSize="40"/>
+            </Grid>
+
+        </Border>
+
+            <Grid RowDefinitions="80,80,80,80" ColumnDefinitions="*,*,*,*">
+                <!-- First Row -->
+            <Button Text="+/-" Grid.Row="0" Grid.Column="0" WidthRequest="75" HeightRequest="75" CornerRadius="50" Clicked="ChangeSign"/>
+            <Button Text="0" Grid.Row="0" Grid.Column="1" WidthRequest="75" HeightRequest="75" CornerRadius="50" Clicked="OnNumberClicked"/>
+            <Button Text="AC" Grid.Row="0" Grid.Column="2"  WidthRequest="75" HeightRequest="75" CornerRadius="50" Clicked="CLEAR"/>
+            <Button Text="/" Grid.Row="0" Grid.Column="3" WidthRequest="75" HeightRequest="75" CornerRadius="50" Clicked="OnSymClicked"/>
+
+                <!-- Second Row -->
+            <Button Text="1" Grid.Row="1" Grid.Column="0" WidthRequest="75" HeightRequest="75" CornerRadius="50" Clicked="OnNumberClicked"/>
+            <Button Text="2" Grid.Row="1" Grid.Column="1" WidthRequest="75" HeightRequest="75" CornerRadius="50" Clicked="OnNumberClicked"/>
+            <Button Text="3" Grid.Row="1" Grid.Column="2" WidthRequest="75" HeightRequest="75" CornerRadius="50" Clicked="OnNumberClicked"/>
+            <Button Text="x" Grid.Row="1" Grid.Column="3" WidthRequest="75" HeightRequest="75" CornerRadius="50" Clicked="OnSymClicked"/>
+
+                <!-- Third Row -->
+            <Button Text="4" Grid.Row="2" Grid.Column="0" WidthRequest="75" HeightRequest="75" CornerRadius="50" Clicked="OnNumberClicked"/>
+            <Button Text="5" Grid.Row="2" Grid.Column="1" WidthRequest="75" HeightRequest="75" CornerRadius="50" Clicked="OnNumberClicked"/>
+            <Button Text="6" Grid.Row="2" Grid.Column="2" WidthRequest="75" HeightRequest="75" CornerRadius="50" Clicked="OnNumberClicked"/>
+            <Button Text="-" Grid.Row="2" Grid.Column="3" WidthRequest="75" HeightRequest="75" CornerRadius="50" Clicked="OnSymClicked"/>
+
+                <!-- Fourth Row -->
+            <Button Text="7" Grid.Row="3" Grid.Column="0" WidthRequest="75" HeightRequest="75" CornerRadius="50" Clicked="OnNumberClicked"/>
+            <Button Text="8" Grid.Row="3" Grid.Column="1" WidthRequest="75" HeightRequest="75" CornerRadius="50" Clicked="OnNumberClicked"/>
+            <Button Text="9" Grid.Row="3" Grid.Column="2" WidthRequest="75" HeightRequest="75" CornerRadius="50" Clicked="OnNumberClicked"/>
+            <Button Text="+" Grid.Row="3" Grid.Column="3" WidthRequest="75" HeightRequest="75" CornerRadius="50" Clicked="OnSymClicked"/>
+
+        </Grid>
+
+            <!-- Button Underneath -->
+        <Button x:Name="calcButton" 
+            Text="CALCULATE NOW"
+            FontSize="25"
+            Clicked="OnButtonClicked" HeightRequest="50" WidthRequest="350" HorizontalOptions="Center"/>
+    </VerticalStackLayout>
+
+
+    
+
+
+
+</ContentPage>
