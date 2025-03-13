@@ -55,6 +55,7 @@ namespace calculator
             if (isClear)
             {
                 myLabel.Text = "";
+                screenText = "";
                 isClear = false;
             }
             screenText += ((Button)sender).Text;
@@ -63,6 +64,7 @@ namespace calculator
 
         private void OnSymClicked(object sender, EventArgs e)
         {
+            isClear = false;
             screenText = "";
             myLabel.Text += ((Button)sender).Text;
         }
@@ -150,7 +152,6 @@ namespace calculator
                     }
                 }
             }
-            screenText = "";
             isClear = true;
             return nums;
         }
